@@ -18,6 +18,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String MOVIE_URL="https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
     List<Movie> movies;
+    //RecyclerView rvMovies;
+    //Alternatvie way using Butter knife
+    @BindView(R.id.rvMovies) RecyclerView rvMovies;
 
     //Add RecyclerView support library to the gradle build file
     //Define a model class to use as the data source
@@ -37,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RecyclerView rvMovies=findViewById(R.id.rvMovies);
+        //RecyclerView rvMovies=findViewById(R.id.rvMovies);
+        //Alternatvie way using Butter knife
+        ButterKnife.bind(this);
+
         movies=new ArrayList<>();
         final MoviesAdapter adapter=new MoviesAdapter(this,movies);
         rvMovies.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
